@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    container_name: mysql
+    network_mode: host
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+
+  adminer:
+    image: adminer
+    restart: always
+    network_mode: host
+    ports:
+      - 8080:8080
+
+  react-node-app-with-mysql:
+    image: jung660317/react-node-app-with-mysql
+    container_name: react-node-app
+    restart: always
+    ports:
+      - 3000:3000
+    network_mode: host
